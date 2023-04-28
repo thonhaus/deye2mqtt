@@ -2,7 +2,7 @@
 
 [Deutsche Version weiter unten (german version below)](#german)
 
-This script reads the current performance data from a Deye inverter, which is often used in balcony power plants, and publishes it via MQTT. It uses the web interface provided by the inverter.
+This script reads the current performance data from a Deye inverter and publishes it via MQTT. It uses the web interface provided by the inverter.
 
 There are many other projects that read data from the cloud or directly communicate with the inverter via Modbus protocol. As I would like to operate it cloud-free and all Modbus variants did not work, this project was created based on an idea by bonnerchen from openhabforum.de.
 
