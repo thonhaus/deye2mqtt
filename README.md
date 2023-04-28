@@ -2,11 +2,11 @@
 
 [Deutsche Version weiter unten (german version below)](#german)
 
-This script reads the current performance data from a Deye inverter and publishes it via MQTT. It uses the web interface provided by the inverter.
+This script reads the current performance data from a Deye inverter and publishes it via MQTT. The current production output, total production of the current day, and total power production are all read. Unfortunately, the Deye inverter only provides new data every ~6 minutes, so real-time reading is not possible. This is also the case when it is connected to the cloud (where the data is not updated more frequently). 
 
-There are many other projects that read data from the cloud or directly communicate with the inverter via Modbus protocol. As I would like to operate it cloud-free and all Modbus variants did not work, this project was created based on an idea by bonnerchen from openhabforum.de.
+There are many other projects that either read the data from the cloud or communicate directly with the inverter via the Modbus protocol. Since I would like to operate this project without using the cloud, and none of the Modbus variants worked for me (and Modbus doesn't offer any advantage as the data cannot be read more frequently), this project was developed based on an idea by [bonnerchen from openhabforum.de](https://openhabforum.de/viewtopic.php?t=7488&sid=1b9b04f9b1eca4617b91f5822d6c7d70). 
 
-It is designed to run as a system service and automatically start when the system starts. The script runs completely cloud-free, and the cloud function of the inverter can be prevented. To do this, simply block internet access for the inverter in the router.
+It is designed to be executed as a systemd service and automatically started when the system boots. The script runs completely without the cloud, and the cloud function of the inverter can be prevented by simply blocking internet access for the inverter in the router.
 
 ## Compatible devices
 All devices that provide this web interface are compatible:
@@ -20,7 +20,7 @@ I operate the script on a Deye-SUN600 myself.
 - Mosquitto client (mosquitto_pub)
 
 ## Note on cloud-free operation
-If internet access for the inverter is blocked, it can no longer correctly transmit the generated daily output, as the daily counter apparently resets nightly from the cloud and not by the device itself. The value of the total generated power is still transmitted, so the daily production can also be calculated by yourself.
+If internet access for the inverter is blocked, it can no longer correctly transmit the generated daily output, as the daily counter apparently resets nightly from the cloud and not by the device itself. The value of the total generated power (total_lifetime) is still transmitted, so the daily production can also be calculated by yourself.
 
 ## Values transmitted via MQTT
 The script transmits the following values to the broker:
@@ -60,9 +60,11 @@ To remove the script and configuration file, simply run `sudo dpkg -r deye2mqtt`
 <a name="german"></a>
 # deye2mqtt - Deutsche Version
 
-Dieses Skript liest die aktuellen Leistungsdaten von einem Deye-Wechselrichter, die oft bei Balkonkraftwerken zum Einsatz kommen, aus und veröffentlicht sie über MQTT. Es nutzt dazu das Web-Frontend, das der Wechselrichter bereitstellt.
+Dieses Skript liest die aktuellen Leistungsdaten von einem Deye-Wechselrichter (die oft bei Balkonkraftwerken zum Einsatz kommen) aus und veröffentlicht sie über MQTT. Ausgelesen werden die aktuelle Produktionsleistung, die gesamte Produktion des aktuellen Tages und die Stromproduktion insgesamt.
 
-Es gibt viele andere Projekte, die die Daten aus der Cloud auslesen ODER direkt via Modbus-Protokoll mit dem Wechselrichter sprechen. Da ich diesen gerne cloudfrei betreiben möchte und alle Modbus-Varianten nicht funktionierten, ist dieses Projekt auf einer Idee von bonnerchen aus dem openhabforum.de entstanden.
+Leider stellt der Deye-Wechselrichter nur alle ~6 Minuten neue Daten zur Verfügung, ein Auslesen in Echtzeit funktioniert daher nicht. Dies ist auch dann der Fall, wenn er mit der Cloud verbunden ist (dort werden die Datene ebenfalls nicht häufiger aktualisiert).
+
+Es gibt viele andere Projekte, die die Daten aus der Cloud auslesen ODER direkt via Modbus-Protokoll mit dem Wechselrichter sprechen. Da ich diesen gerne cloudfrei betreiben möchte und alle Modbus-Varianten nicht funktionierten (und Modbus für mich auch keinen Vorteil bringt, da die Daten darüber auch nicht öfter ausgelesen werden können), ist dieses Projekt auf einer Idee von [bonnerchen aus dem openhabforum.de](https://openhabforum.de/viewtopic.php?t=7488&sid=1b9b04f9b1eca4617b91f5822d6c7d70) entstanden.
 
 Es ist so ausgelegt, dass es als Systemdienst ausgeführt wird und automatisch beim Starten des Systems gestartet wird. Das Skript läuft komplett Cloud-frei, die Cloud-Funktion des Wechselrichtes kann unterbunden werden. Dazu einfach für den Wechselrichter im Router den Internetzugang sperren.
 
@@ -78,7 +80,7 @@ Ich selbst betreibe das Skript an einem Deye-SUN600.
 - Mosquitto-Client (mosquitto_pub)
 
 ## Hinweis zum cloudfreien Betrieb
-Wenn der Internetzugang für den Wechselrichter gesperrt wird, kann dieser die erzeugte Tagesleistung nicht mehr korrekt übermitteln, da der Tageszähler offenbar nächtlich von der Cloud und nicht durch das Gerät selbst zurückgesetzt wird. Der Wert des insgesamt erzeugten Stroms wird weiterhin übermittelt, sodass sich die Tagesproduktion auch dadurch selbst berechnen lässt.
+Wenn der Internetzugang für den Wechselrichter gesperrt wird, kann dieser die erzeugte Tagesleistung nicht mehr korrekt übermitteln, da der Tageszähler offenbar nächtlich von der Cloud und nicht durch das Gerät selbst zurückgesetzt wird. Der Wert des insgesamt erzeugten Stroms (total_lifetime) wird weiterhin übermittelt, sodass sich die Tagesproduktion auch dadurch selbst berechnen lässt.
 
 ## Übermittelte Werte per MQTT
 Das Skript übermittelt folgende Werte an den Broker:
