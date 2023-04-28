@@ -1,4 +1,4 @@
-# Readme.md - deye2mqtt
+# deye2mqtt
 
 Dieses Skript liest die aktuellen Leistungsdaten von einem Deye-Wechselrichter, die oft bei Balkonkraftwerken zum Einsatz kommen, aus und veröffentlicht sie über MQTT. Es nutzt dazu das Web-Frontend, das der Wechselrichter bereitstellt. Das Skript verwendet eine Konfigurationsdatei, um auf den Inverter und den MQTT-Broker zuzugreifen.
 
@@ -9,6 +9,7 @@ Es ist so ausgelegt, dass es als Systemdienst ausgeführt wird und automatisch b
 ## Kompatible Geräte
 Es sind alle Geräte kompatibel, die dieses Webinterface zur Verfügung stellen:
 ![Webinterface des Wechselrichters](screenshot.png)
+
 Ich selbst betreibe das Skript an einem Deye-SUN600.
 
 ## Anforderungen
