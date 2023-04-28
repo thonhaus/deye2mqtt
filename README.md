@@ -28,16 +28,16 @@ Das Skript 체bermittelt folgende Werte an den Broker:
 - `deye/total_liftetime`: Zahl. Gibt die gesamte Produktionsleistung in kWh an.
 
 ## Automatische Installation
-1. Laden Sie die Datei deye2mqtt.deb herunter und installieren diese 체ber `sudo dpkg -i deye2mqtt.deb`.
-2. Fahre Sie im Abschnitt Konfiguration fort.
+1. Einfach die Datei `deye2mqtt.deb` herunterladen und installieren: `sudo dpkg -i deye2mqtt.deb`.
+2. Weiter geht's im Abschnitt Konfiguration.
 
 ## Manuelle Installation
-1. Laden Sie die neueste Version des Skripts von Github herunter.
-2. Stellen Sie sicher, dass die erforderlichen Pakete installiert sind (siehe Anforderungen).
-3. Kopieren Sie die `deye2mqtt` Datei nach `/usr/bin` und stellen Sie sicher, dass sie ausf체hrbar ist (`sudo chmod +x /usr/bin/deye2mqtt`).
-4. Kopieren Sie die `deye2mqtt.conf` Datei nach `/etc`.
-5. Kopieren Sie die `deye2mqtt.service` nach `/etc/system/system`.
-6. Laden Sie den daemon neu: `sudo systemctl daemon-reload`.
+1. Die Dateien aus `src` herunterladen.
+2. Sicherstellen, dass die erforderlichen Pakete installiert sind (siehe Anforderungen).
+3. Die Datei `deye2mqtt` nach `/usr/bin` kopieren und ausf체hrbar machen (`sudo chmod +x /usr/bin/deye2mqtt`).
+4. Die Datei `deye2mqtt.conf` nach `/etc` kopieren.
+5. Die Datei `deye2mqtt.service` nach `/etc/system/system` kopieren.
+6. Den daemon neu laden: `sudo systemctl daemon-reload`.
 7. Systemdienst aktivieren: `sudo systemctl enable deye2mqtt`.
 
 ## Konfiguration
@@ -51,4 +51,4 @@ Die Konfiguration erfolgt 체ber die Datei `/etc/deye2mqtt.conf`. Die Datei enth�
 - `interval`: Die Anzahl der Sekunden, die das Skript zwischen den Abfragen des Inverters pausieren soll.
 
 ## Deinstallation
-Um das Skript und die Konfigurationsdatei zu entfernen, verwenden Sie den Befehl `sudo dpkg -r deye2mqtt`. Dies entfernt das Skript und die Konfigurationsdatei und stellt alle Systemdateien auf den Zustand vor der Installation des Pakets zur체ck (nur, wenn es automatisch installiert wurde).
+Um das Skript und die Konfigurationsdatei zu entfernen, einfach `sudo dpkg -r deye2mqtt` ausf체hren. Dies entfernt das Skript und die Konfigurationsdatei und stellt alle Systemdateien auf den Zustand vor der Installation des Pakets zur체ck (nur, wenn es automatisch installiert wurde).
