@@ -1,0 +1,38 @@
+#!/bin/bash
+
+source /etc/deye2mqtt.conf
+
+TMP="/tmp/.deye2mqtt"
+
+# Funktion zum Senden der LWT-Nachricht
+# Übergabeparameter Online oder Offline
+send_lwt() {
+    local status="$1"
+    mosquitto_pub -h $broker_address -p $broker_port -t $mqtt_topic/LWT -m $status -q 1 -r
+}
+
+# Funktion zum Senden der Nachricht
+send_msg() {
+    local topic="$1"
+    local message="$2"
+    mosquitto_pub -h $broker_address -p $broker_port -t "$mqtt_topic/$topic" -m "$message" -q 1
+}
+
+trap 'send_lwt "Offline"' EXIT INT
+
+while [ 1 ]
+do
+    curl --silent --user $deye_user:$deye_pass http://$deye_ip/status.html > $TMP
+    if [ $? = 0 ]; then
+        send_lwt Online
+        current_power=`grep "var webdata_now_p" $TMP | cut -d\" -f2`
+        total_today=`grep "var webdata_today_e" $TMP | cut -d\" -f2`
+        total_lifetime=`grep "var webdata_total_e" $TMP | cut -d\" -f2`
+        send_msg current_power $current_power
+        send_msg total_today $total_today
+        send_msg total_lifetime $total_lifetime
+    else
+        send_lwt Offline
+    fi
+    sleep $interval
+done

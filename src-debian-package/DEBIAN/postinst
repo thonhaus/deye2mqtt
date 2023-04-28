@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# reload systemd and activate service
+systemctl daemon-reload
+systemctl enable deye2mqtt
+
+echo "Please make your configuration in /etc/deye2mqtt.conf. After that, you can start the service by running: systemctl start deye2mqtt"

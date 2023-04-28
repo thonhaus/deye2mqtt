@@ -1,0 +1,13 @@
+[Unit]
+Description=Service to send data from a deye inverter to a mqtt broker
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/deye2mqtt
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

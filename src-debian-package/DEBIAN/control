@@ -1,0 +1,6 @@
+Package: deye2mqtt
+Version: 1.0
+Architecture: all
+Maintainer: Thomas Nienhaus <thomas@thomas-nienhaus.net>
+Depends: curl, mosquitto-clients
+Description: Sends data from a deye inverter to a mqtt broker
