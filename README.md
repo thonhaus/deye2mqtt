@@ -22,10 +22,10 @@ Wenn der Internetzugang für den Wechselrichter gesperrt wird, kann dieser die e
 
 ## Übermittelte Werte per MQTT
 Das Skript übermittelt folgende Werte an den Broker:
-- deye/LWT: Online/Offline (String). Gibt an, ob der Dienst läuft und der Wechselrichter erreichbar ist.
-- deye/current_power: Zahl. Gibt in Watt die aktuelle Produktionsleistung an.
-- deye/total_today: Zahl. Gibt die Produktionsleistung des aktuellen Tages in kWh an (bitte Hinweis zum cloudfreien Betrieb beachten) 
-- deye/total_liftetime: Zahl. Gibt die gesamte Produktionsleistung in kWh an.
+- `deye/LWT`: Online/Offline (String). Gibt an, ob der Dienst läuft und der Wechselrichter erreichbar ist.
+- `deye/current_power`: Zahl. Gibt in Watt die aktuelle Produktionsleistung an.
+- `deye/total_today`: Zahl. Gibt die Produktionsleistung des aktuellen Tages in kWh an (bitte Hinweis zum cloudfreien Betrieb beachten) 
+- `deye/total_liftetime`: Zahl. Gibt die gesamte Produktionsleistung in kWh an.
 
 ## Automatische Installation
 1. Laden Sie die Datei deye2mqtt.deb herunter und installieren diese über `sudo dpkg -i deye2mqtt.deb`.
