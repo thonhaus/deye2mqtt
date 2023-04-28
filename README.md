@@ -20,7 +20,7 @@ I operate the script on a Deye-SUN600 myself.
 - Mosquitto client (mosquitto_pub)
 
 ## Note on cloud-free operation
-If internet access for the inverter is blocked, it can no longer correctly transmit the generated daily output, as the daily counter apparently resets nightly from the cloud and not by the device itself. The value of the total generated power is still transmitted, so the daily production can also be calculated by itself.
+If internet access for the inverter is blocked, it can no longer correctly transmit the generated daily output, as the daily counter apparently resets nightly from the cloud and not by the device itself. The value of the total generated power is still transmitted, so the daily production can also be calculated by yourself.
 
 ## Values transmitted via MQTT
 The script transmits the following values to the broker:
