@@ -33,6 +33,7 @@ do
         send_msg total_lifetime $total_lifetime
     else
         send_lwt Offline
+        send_msg current_power 0
     fi
     sleep $interval
 done
