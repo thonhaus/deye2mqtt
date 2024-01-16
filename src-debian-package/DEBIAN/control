@@ -1,5 +1,5 @@
 Package: deye2mqtt
-Version: 1.0
+Version: 1.1
 Architecture: all
 Maintainer: Thomas Nienhaus <thomas@thomas-nienhaus.net>
 Depends: curl, mosquitto-clients
