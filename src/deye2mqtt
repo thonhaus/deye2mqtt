@@ -4,18 +4,24 @@ source /etc/deye2mqtt.conf
 
 TMP="/tmp/.deye2mqtt"
 
+# Build optional MQTT authentication arguments
+MQTT_AUTH=()
+if [ -n "${broker_user}" ] && [ -n "${broker_password}" ]; then
+    MQTT_AUTH=(-u "$broker_user" -P "$broker_password")
+fi
+
 # Funktion zum Senden der LWT-Nachricht
 # Übergabeparameter Online oder Offline
 send_lwt() {
     local status="$1"
-    mosquitto_pub -h $broker_address -p $broker_port -t $mqtt_topic/LWT -m $status -q 1 -r
+    mosquitto_pub -h $broker_address -p $broker_port "${MQTT_AUTH[@]}" -t $mqtt_topic/LWT -m $status -q 1 -r
 }
 
 # Funktion zum Senden der Nachricht
 send_msg() {
     local topic="$1"
     local message="$2"
-    mosquitto_pub -h $broker_address -p $broker_port -t "$mqtt_topic/$topic" -m "$message" -q 1
+    mosquitto_pub -h $broker_address -p $broker_port "${MQTT_AUTH[@]}" -t "$mqtt_topic/$topic" -m "$message" -q 1
 }
 
 trap 'send_lwt "Offline"' EXIT INT
